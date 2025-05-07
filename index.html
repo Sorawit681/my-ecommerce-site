@@ -1480,7 +1480,7 @@
                     <div class="form-group row">
                       <div class="col-md-12">
                        <!--  <input type="text" class="form-control" placeholder="Subject"> -->
-                        <select id="subject-select" class="form-control "onchange ="show()">
+                        <select id="subject-select" class="form-control" onchange="show()" >
                           <option value="">Subject</option>
                         </select>
                       </div>
@@ -1666,11 +1666,11 @@
 
   <script>
 
-    loadDoc("./xml/class_sunday.xml", classXML);
+    /* loadDoc("./xml/class_sunday.xml", classXML);
 
     loadDoc("./json/class_sunday.json", classJSON);
 
-    loadSubject();
+    loadSubject(); */
 
     function loadDoc(url, cFunction) {
       const xhttp = new XMLHttpRequest();
@@ -1739,9 +1739,9 @@
 
     }
     
-    function loadSubject(){
+    function loadSubject(file){
       const select = document.getElementById("subject-select");
-      fetch("./json/contact_subject.json")
+      fetch(file)
       .then(jsonDoc => jsonDoc.json())
       .then(jsonObj => {
         console.log(jsonObj.contactSubject);
@@ -1754,16 +1754,26 @@
         })
       })
     }
-function show(){
-  const select =document.getElementById("subject-select")
-  console.log(select.value)
-}
+
+    function show(){
+      const select = document.getElementById("subject-select");
+      console.log(select.value)
+
+    }
     window.onload = function(){
 
       const contact = document.getElementById("contact-head");
       contact.innerHTML = "Wooooooow";
-      
-    }
+
+      loadDoc("./xml/class_sunday.xml", classXML);
+
+      loadDoc("./json/class_sunday.json", classJSON);
+
+      //loadSubject('./json/contact_subject.json');
+      loadSubject('http://localhost:4040/')
+    };
+
+
   </script>
 </body>
 
