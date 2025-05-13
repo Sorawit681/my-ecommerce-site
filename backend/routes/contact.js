@@ -7,4 +7,4 @@ console.log('Content for Submited',{fname,lname,email,subject,message});
 res.status(200).json({status:"Message Recieved"})
 });
 
-module.exports = router
+module.exports = router;
